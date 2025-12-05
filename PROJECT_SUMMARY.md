@@ -134,7 +134,7 @@ This will:
 - Create virtual environment
 - Install all dependencies
 - Verify Ollama is running
-- Pull llama3.2 model if needed
+- Check for llama2 model (or llama3.2/mistral)
 
 ### Step 2: Run All Experiments
 ```bash
@@ -213,7 +213,7 @@ git push
 ## 💻 Technology Stack
 
 - **Python**: 3.10+ with type hints
-- **LLM**: Ollama (llama3.2)
+- **LLM**: Ollama (llama2, or llama3.2/mistral)
 - **Framework**: LangChain for LLM orchestration
 - **Vector DB**: ChromaDB (in-memory)
 - **Embeddings**: sentence-transformers

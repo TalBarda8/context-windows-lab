@@ -36,7 +36,7 @@ EXP4_RESULTS_DIR = RESULTS_DIR / "exp4"
 
 # Ollama settings
 OLLAMA_BASE_URL = "http://localhost:11434"
-PRIMARY_MODEL = "llama3.2"  # Primary model to use
+PRIMARY_MODEL = "llama2"  # Primary model to use
 FALLBACK_MODEL = "mistral"  # Fallback if primary unavailable
 
 # LLM parameters
@@ -45,8 +45,8 @@ LLM_TOP_P = 1.0
 LLM_SEED = 42  # Random seed for reproducibility
 
 # Context window limits (tokens)
-DEFAULT_CONTEXT_WINDOW = 4096  # Typical for llama3.2
-MAX_CONTEXT_WINDOW = 8192
+DEFAULT_CONTEXT_WINDOW = 4096  # Typical for llama2
+MAX_CONTEXT_WINDOW = 4096  # llama2 standard limit
 
 # ============================================================================
 # EXPERIMENT 1: NEEDLE IN HAYSTACK

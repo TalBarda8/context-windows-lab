@@ -76,13 +76,14 @@ if command -v ollama &> /dev/null; then
         ollama list
 
         # Check for required model
-        if ollama list | grep -q "llama3.2"; then
-            print_success "llama3.2 model found"
+        if ollama list | grep -q "llama2"; then
+            print_success "llama2 model found"
+        elif ollama list | grep -q "llama3.2"; then
+            print_success "llama3.2 model found (can be used as alternative)"
         else
-            print_warning "llama3.2 model not found"
-            echo "Pulling llama3.2 model (this may take a few minutes)..."
-            ollama pull llama3.2
-            print_success "llama3.2 model downloaded"
+            print_warning "llama2 model not found"
+            echo "Note: You can use llama2, llama3.2, or mistral"
+            echo "The config is set to llama2 by default"
         fi
     else
         print_warning "Ollama service not running"

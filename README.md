@@ -33,7 +33,7 @@ context-windows-lab/
 - **Python**: 3.10 or higher
 - **Ollama**: Installed and running locally
   - Install from: https://ollama.ai
-  - Pull required model: `ollama pull llama3.2`
+  - Pull required model: `ollama pull llama2` (or llama3.2, mistral)
 - **Git**: For version control
 
 ## Setup Instructions
