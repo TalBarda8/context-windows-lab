@@ -284,6 +284,21 @@ class RAGImpactExperiment:
 
         print(f"  ✓ Saved plot to {plot_path}")
 
+    def _convert_to_json_serializable(self, obj):
+        """Convert numpy types to Python native types for JSON serialization."""
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, dict):
+            return {key: self._convert_to_json_serializable(value) for key, value in obj.items()}
+        elif isinstance(obj, list):
+            return [self._convert_to_json_serializable(item) for item in obj]
+        else:
+            return obj
+
     def save_results(self, results: Dict[str, Any]):
         """
         Save results to JSON.
@@ -318,7 +333,7 @@ class RAGImpactExperiment:
         save_path = self.results_dir / "results.json"
 
         with open(save_path, 'w', encoding='utf-8') as f:
-            json.dump(summary, f, indent=2, ensure_ascii=False)
+            json.dump(self._convert_to_json_serializable(summary), f, indent=2, ensure_ascii=False)
 
         print(f"  ✓ Saved results to {save_path}")
 

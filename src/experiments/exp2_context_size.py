@@ -199,6 +199,21 @@ class ContextSizeExperiment:
 
         print(f"  ✓ Saved plot to {plot_path}")
 
+    def _convert_to_json_serializable(self, obj):
+        """Convert numpy types to Python native types for JSON serialization."""
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, dict):
+            return {key: self._convert_to_json_serializable(value) for key, value in obj.items()}
+        elif isinstance(obj, list):
+            return [self._convert_to_json_serializable(item) for item in obj]
+        else:
+            return obj
+
     def save_results(self, results: List[Dict[str, Any]]):
         """
         Save results to JSON.
@@ -212,16 +227,16 @@ class ContextSizeExperiment:
             "config": self.config,
             "results_summary": [
                 {
-                    "num_docs": r["num_docs"],
-                    "accuracy_mean": r["accuracy_mean"],
-                    "accuracy_std": r["accuracy_std"],
-                    "latency_mean": r["latency_mean"],
-                    "latency_std": r["latency_std"],
-                    "tokens_used": r["tokens_used"],
+                    "num_docs": int(r["num_docs"]),
+                    "accuracy_mean": float(r["accuracy_mean"]),
+                    "accuracy_std": float(r["accuracy_std"]),
+                    "latency_mean": float(r["latency_mean"]),
+                    "latency_std": float(r["latency_std"]),
+                    "tokens_used": int(r["tokens_used"]),
                 }
                 for r in results
             ],
-            "detailed_results": results,
+            "detailed_results": self._convert_to_json_serializable(results),
         }
 
         # Save to JSON

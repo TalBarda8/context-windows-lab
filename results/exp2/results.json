@@ -1,0 +1,262 @@
+{
+  "experiment": "Context Window Size Impact",
+  "config": {
+    "document_counts": [
+      2,
+      5,
+      10,
+      20
+    ],
+    "words_per_document": 150,
+    "iterations_per_size": 3,
+    "question_template": "What is the company's annual revenue mentioned in the documents?"
+  },
+  "results_summary": [
+    {
+      "num_docs": 2,
+      "accuracy_mean": 0.3314131498336792,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.1017282009124756,
+      "latency_std": 0.36282917246403035,
+      "tokens_used": 501
+    },
+    {
+      "num_docs": 5,
+      "accuracy_mean": 0.31416192650794983,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.7272299925486247,
+      "latency_std": 0.6962694853698492,
+      "tokens_used": 1244
+    },
+    {
+      "num_docs": 10,
+      "accuracy_mean": 0.4215214252471924,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.5485792954762776,
+      "latency_std": 1.3657856954661425,
+      "tokens_used": 2481
+    },
+    {
+      "num_docs": 20,
+      "accuracy_mean": 0.42183852195739746,
+      "accuracy_std": 0.0,
+      "latency_mean": 2.865363438924154,
+      "latency_std": 2.8904264666533197,
+      "tokens_used": 4915
+    }
+  ],
+  "detailed_results": [
+    {
+      "num_docs": 2,
+      "accuracy_mean": 0.3314131498336792,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.1017282009124756,
+      "latency_std": 0.36282917246403035,
+      "tokens_used": 501,
+      "iterations": 3,
+      "trials": [
+        {
+          "num_docs": 2,
+          "tokens_used": 501,
+          "revenue_value": "$754 million",
+          "response": "The company's annual revenue mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.2,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8094209432601929,
+          "overall_score": 0.3314131498336792,
+          "extracted_answer": "mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022",
+          "latency": 1.61391282081604,
+          "correct": false
+        },
+        {
+          "num_docs": 2,
+          "tokens_used": 501,
+          "revenue_value": "$754 million",
+          "response": "The company's annual revenue mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.2,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8094209432601929,
+          "overall_score": 0.3314131498336792,
+          "extracted_answer": "mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022",
+          "latency": 0.8724257946014404,
+          "correct": false
+        },
+        {
+          "num_docs": 2,
+          "tokens_used": 501,
+          "revenue_value": "$754 million",
+          "response": "The company's annual revenue mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.2,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8094209432601929,
+          "overall_score": 0.3314131498336792,
+          "extracted_answer": "mentioned in the document is $754 million for the fiscal year 2020 and $754 million for the fiscal year 2022",
+          "latency": 0.8188459873199463,
+          "correct": false
+        }
+      ]
+    },
+    {
+      "num_docs": 5,
+      "accuracy_mean": 0.31416192650794983,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.7272299925486247,
+      "latency_std": 0.6962694853698492,
+      "tokens_used": 1244,
+      "iterations": 3,
+      "trials": [
+        {
+          "num_docs": 5,
+          "tokens_used": 1244,
+          "revenue_value": "$296 million",
+          "response": "The company's annual revenue mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "exact_match": 0.0,
+          "partial_match": 0.12435233160621761,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8457080721855164,
+          "overall_score": 0.31416192650794983,
+          "extracted_answer": "mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "latency": 2.711901903152466,
+          "correct": false
+        },
+        {
+          "num_docs": 5,
+          "tokens_used": 1244,
+          "revenue_value": "$296 million",
+          "response": "The company's annual revenue mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "exact_match": 0.0,
+          "partial_match": 0.12435233160621761,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8457080721855164,
+          "overall_score": 0.31416192650794983,
+          "extracted_answer": "mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "latency": 1.236541986465454,
+          "correct": false
+        },
+        {
+          "num_docs": 5,
+          "tokens_used": 1244,
+          "revenue_value": "$296 million",
+          "response": "The company's annual revenue mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "exact_match": 0.0,
+          "partial_match": 0.12435233160621761,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8457080721855164,
+          "overall_score": 0.31416192650794983,
+          "extracted_answer": "mentioned in the documents are:\n\n* $296 million for the fiscal year 2020 (mentioned in the first document)\n* $296 million for the fiscal year 2021 (mentioned in the second document)",
+          "latency": 1.233246088027954,
+          "correct": false
+        }
+      ]
+    },
+    {
+      "num_docs": 10,
+      "accuracy_mean": 0.4215214252471924,
+      "accuracy_std": 0.0,
+      "latency_mean": 1.5485792954762776,
+      "latency_std": 1.3657856954661425,
+      "tokens_used": 2481,
+      "iterations": 3,
+      "trials": [
+        {
+          "num_docs": 10,
+          "tokens_used": 2481,
+          "revenue_value": "$878 million",
+          "response": "The company Martin Ltd reported an annual revenue of $878 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8870657682418823,
+          "overall_score": 0.4215214252471924,
+          "extracted_answer": "of $878 million for the fiscal year 2022",
+          "latency": 3.480086088180542,
+          "correct": false
+        },
+        {
+          "num_docs": 10,
+          "tokens_used": 2481,
+          "revenue_value": "$878 million",
+          "response": "The company Martin Ltd reported an annual revenue of $878 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8870657682418823,
+          "overall_score": 0.4215214252471924,
+          "extracted_answer": "of $878 million for the fiscal year 2022",
+          "latency": 0.5869467258453369,
+          "correct": false
+        },
+        {
+          "num_docs": 10,
+          "tokens_used": 2481,
+          "revenue_value": "$878 million",
+          "response": "The company Martin Ltd reported an annual revenue of $878 million for the fiscal year 2022.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8870657682418823,
+          "overall_score": 0.4215214252471924,
+          "extracted_answer": "of $878 million for the fiscal year 2022",
+          "latency": 0.5787050724029541,
+          "correct": false
+        }
+      ]
+    },
+    {
+      "num_docs": 20,
+      "accuracy_mean": 0.42183852195739746,
+      "accuracy_std": 0.0,
+      "latency_mean": 2.865363438924154,
+      "latency_std": 2.8904264666533197,
+      "tokens_used": 4915,
+      "iterations": 3,
+      "trials": [
+        {
+          "num_docs": 20,
+          "tokens_used": 4915,
+          "revenue_value": "$210 million",
+          "response": "The company Figueroa-Perry reported an annual revenue of $210 million for the fiscal year 2024.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8891797661781311,
+          "overall_score": 0.42183852195739746,
+          "extracted_answer": "of $210 million for the fiscal year 2024",
+          "latency": 6.953042268753052,
+          "correct": false
+        },
+        {
+          "num_docs": 20,
+          "tokens_used": 4915,
+          "revenue_value": "$210 million",
+          "response": "The company Figueroa-Perry reported an annual revenue of $210 million for the fiscal year 2024.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8891797661781311,
+          "overall_score": 0.42183852195739746,
+          "extracted_answer": "of $210 million for the fiscal year 2024",
+          "latency": 0.8245368003845215,
+          "correct": false
+        },
+        {
+          "num_docs": 20,
+          "tokens_used": 4915,
+          "revenue_value": "$210 million",
+          "response": "The company Figueroa-Perry reported an annual revenue of $210 million for the fiscal year 2024.",
+          "exact_match": 0.0,
+          "partial_match": 0.46153846153846156,
+          "keyword_match": 1.0,
+          "semantic_similarity": 0.8891797661781311,
+          "overall_score": 0.42183852195739746,
+          "extracted_answer": "of $210 million for the fiscal year 2024",
+          "latency": 0.8185112476348877,
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

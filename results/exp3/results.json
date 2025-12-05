@@ -1,0 +1,50 @@
+{
+  "experiment": "RAG Impact",
+  "config": {
+    "num_documents": 10,
+    "topics": [
+      "technology",
+      "law",
+      "medicine"
+    ],
+    "chunk_size": 400,
+    "chunk_overlap": 50,
+    "top_k_retrieval": 3,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "question_templates": {
+      "technology": "What are the main features of the new software system?",
+      "law": "What are the legal requirements for data privacy?",
+      "medicine": "What are the side effects of {drug_name}?"
+    }
+  },
+  "query": "What are the side effects of פנדול?",
+  "expected_answer": "כאב ראש, בחילה, סחרחורת",
+  "comparison": {
+    "full_context": {
+      "accuracy": 0.08302827179431915,
+      "latency": 18.917808055877686,
+      "tokens_used": 2877,
+      "num_docs_used": 10
+    },
+    "rag": {
+      "accuracy": 0.10204355418682098,
+      "latency": 9.649329662322998,
+      "tokens_used": 235,
+      "num_docs_used": 3
+    }
+  },
+  "detailed_results": {
+    "full_context": {
+      "method": "full_context",
+      "response": "\nפנדול (Pandrol) is a medication used to treat nausea and vomiting caused by chemotherapy or other medical conditions. As with any medication, פנדול can cause side effects, some of which are common and mild, while others are less common and more severe. Here are some possible side effects of פנדול:\n\nCommon side effects:\n\n* Dizziness or lightheadedness\n* Headache\n* Fatigue or weakness\n* Nausea or vomiting (less common than with other anti-nausea medications)\n* Diarrhea or constipation\n* Stomach cramps or discomfort\n* Sleep disturbances (insomnia or vivid dreams)\n\nLess common side effects:\n\n* Changes in taste or smell\n* Mood changes (such as anxiety, depression, or irritability)\n* Confusion or disorientation\n* Hallucinations (visual or auditory)\n* Seizures or convulsions\n* Allergic reactions (such as rash, itching, or difficulty breathing)\n\nSerious side effects:\n\n* Severe allergic reactions\n* Seizures or convulsions\n* Eye problems (such as blurred vision, double vision, or eye pain)\n* Hearing problems (such as hearing loss or ringing in the ears)\n* Liver damage or abnormal liver function tests\n* Kidney damage or abnormal kidney function tests\n* Blood problems (such as low white blood cell count or low platelet count)\n\nIt is important to note that this list of side effects is not exhaustive, and you should consult your doctor if you experience any unusual symptoms while taking פנדול. Your doctor may adjust your dosage or recommend a different medication to minimize side effects. Additionally, it is essential to follow the instructions provided by your healthcare professional when taking פנדול to reduce the risk of side effects.",
+      "latency": 18.917808055877686,
+      "tokens_used": 2877,
+      "num_docs_used": 10,
+      "success": true,
+      "exact_match": 0.0,
+      "partial_match": 0.014388489208633094,
+      "keyword_match": 0.0,
+      "semantic_similarity": 0.5247448086738586,
+      "overall_score": 0.08302827179431915,
+      "extracted_answer": "פנדול (Pandrol) is a medication used to treat nausea and vomiting caused by chemotherapy or other medical conditions",
+      "correct": 

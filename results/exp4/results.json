@@ -1,0 +1,39 @@
+{
+  "experiment": "Context Engineering Strategies",
+  "config": {
+    "num_actions": 10,
+    "max_tokens_threshold": 2048,
+    "strategies": [
+      "select",
+      "compress",
+      "write"
+    ],
+    "select_top_k": 5,
+    "scratchpad_capacity": 20,
+    "agent_action_template": "Execute task {task_id}: {task_description}"
+  },
+  "summary": {
+    "select": {
+      "mean_accuracy": 0.10925377905368805,
+      "correct_count": 0,
+      "total_steps": 1
+    },
+    "compress": {
+      "mean_accuracy": 0.11010561883449554,
+      "correct_count": 0,
+      "total_steps": 1
+    },
+    "write": {
+      "mean_accuracy": 0.10625508427619934,
+      "correct_count": 0,
+      "total_steps": 1
+    }
+  },
+  "detailed_results": {
+    "select": [
+      {
+        "step": 10,
+        "strategy": "select",
+        "context_size": 73,
+        "accuracy": 0.10925377905368805,
+        "correct": 
