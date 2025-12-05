@@ -15,6 +15,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from typing import List, Dict, Any, Optional
 import json
+import numpy as np
 from tqdm import tqdm
 
 from config import (

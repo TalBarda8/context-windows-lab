@@ -14,6 +14,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from typing import List, Dict, Any
 import json
 from tqdm import tqdm
+import numpy as np
 
 from config import (
     EXP1_CONFIG,
@@ -183,6 +184,21 @@ class NeedleHaystackExperiment:
 
         print(f"  ✓ Saved plot to {plot_path}")
 
+    def _convert_to_json_serializable(self, obj):
+        """Convert numpy types to Python native types for JSON serialization."""
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, dict):
+            return {key: self._convert_to_json_serializable(value) for key, value in obj.items()}
+        elif isinstance(obj, list):
+            return [self._convert_to_json_serializable(item) for item in obj]
+        else:
+            return obj
+
     def save_results(self, results: Dict[str, Any]):
         """
         Save results to JSON.
@@ -196,14 +212,14 @@ class NeedleHaystackExperiment:
             "config": self.config,
             "results_by_position": {
                 position: {
-                    "mean_accuracy": data["mean_accuracy"],
-                    "success_rate": data["success_rate"],
-                    "correct_count": data["correct_count"],
-                    "total_count": data["total_count"],
+                    "mean_accuracy": float(data["mean_accuracy"]),
+                    "success_rate": float(data["success_rate"]),
+                    "correct_count": int(data["correct_count"]),
+                    "total_count": int(data["total_count"]),
                 }
                 for position, data in results.items()
             },
-            "detailed_results": results,
+            "detailed_results": self._convert_to_json_serializable(results),
         }
 
         # Save to JSON
