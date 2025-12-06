@@ -11,6 +11,7 @@ from typing import List, Dict, Tuple, Optional
 from faker import Faker
 import json
 from pathlib import Path
+from random import Random
 
 # Import configuration
 from config import (
@@ -34,10 +35,19 @@ class DataGenerator:
             seed: Random seed for reproducibility
         """
         self.seed = seed
-        random.seed(seed)
+        self._reset_seeds()
+
+    def _reset_seeds(self):
+        """Reset all random seeds for reproducibility."""
+        random.seed(self.seed)
+        Faker.seed(self.seed)
+        # Create dedicated Random instance for this generator
+        self.random = Random(self.seed)
+        # Recreate Faker instances with explicit seeding
         self.faker_en = Faker('en_US')
+        self.faker_en.seed_instance(self.seed)
         self.faker_he = Faker('he_IL')
-        Faker.seed(seed)
+        self.faker_he.seed_instance(self.seed)
 
     def generate_filler_text(self, num_words: int,
                             language: str = 'en') -> str:
@@ -58,10 +68,10 @@ class DataGenerator:
 
         while current_words < num_words:
             # Generate a mix of sentences and paragraphs
-            if random.random() < 0.7:
-                sentence = faker.sentence(nb_words=random.randint(8, 20))
+            if self.random.random() < 0.7:
+                sentence = faker.sentence(nb_words=self.random.randint(8, 20))
             else:
-                sentence = faker.paragraph(nb_sentences=random.randint(2, 4))
+                sentence = faker.paragraph(nb_sentences=self.random.randint(2, 4))
 
             sentences.append(sentence)
             current_words += len(sentence.split())
@@ -90,6 +100,9 @@ class DataGenerator:
         """
         sentences = text.split('. ')
 
+        # Clean up: remove empty strings and ensure consistent format
+        sentences = [s.rstrip('.') for s in sentences if s.strip()]
+
         if position == 'start':
             # Insert at beginning
             sentences.insert(0, fact.rstrip('.'))
@@ -97,9 +110,21 @@ class DataGenerator:
             # Append at end
             sentences.append(fact.rstrip('.'))
         else:  # middle
-            # Insert in the middle
-            mid_point = len(sentences) // 2
-            sentences.insert(mid_point, fact.rstrip('.'))
+            # Insert in the middle based on character position
+            # Find the sentence that puts us closest to 50% of text length
+            total_chars = sum(len(s) for s in sentences) + len(sentences) * 2  # Account for '. ' separators
+            target_pos = total_chars // 2
+
+            current_pos = 0
+            insert_idx = len(sentences) // 2  # Default to middle sentence
+
+            for i, sentence in enumerate(sentences):
+                current_pos += len(sentence) + 2  # +2 for '. '
+                if current_pos >= target_pos:
+                    insert_idx = i + 1
+                    break
+
+            sentences.insert(insert_idx, fact.rstrip('.'))
 
         return '. '.join(sentences) + '.'
 
@@ -121,7 +146,7 @@ class DataGenerator:
         """
         if secret_value is None:
             # Generate random secret (password-like string)
-            secret_value = ''.join(random.choices(
+            secret_value = ''.join(self.random.choices(
                 string.ascii_letters + string.digits, k=12
             ))
 
@@ -192,11 +217,11 @@ class DataGenerator:
         """
         if revenue_value is None:
             # Generate random revenue (in millions)
-            revenue_value = f"${random.randint(10, 999)} million"
+            revenue_value = f"${self.random.randint(10, 999)} million"
 
         # Create a business-themed document
         company_name = self.faker_en.company()
-        year = random.randint(2020, 2024)
+        year = self.random.randint(2020, 2024)
 
         fact = f"The company {company_name} reported annual revenue of {revenue_value} for the fiscal year {year}."
 
@@ -205,7 +230,7 @@ class DataGenerator:
 
         # Embed fact in random position
         document = self.embed_fact_in_text(
-            filler, fact, random.choice(['start', 'middle', 'end'])
+            filler, fact, self.random.choice(['start', 'middle', 'end'])
         )
 
         return {
@@ -238,10 +263,10 @@ class DataGenerator:
 
         for count in doc_counts:
             # Use same revenue value across all documents in this set
-            revenue_value = f"${random.randint(100, 999)} million"
+            revenue_value = f"${self.random.randint(100, 999)} million"
 
             # Select one random document to embed the fact
-            target_doc_index = random.randint(0, count - 1)
+            target_doc_index = self.random.randint(0, count - 1)
 
             docs = []
             for i in range(count):
@@ -325,11 +350,11 @@ class DataGenerator:
         ]
 
         for i in range(num_docs):
-            topic = random.choice(topics)
+            topic = self.random.choice(topics)
 
             if topic == "medicine":
-                drug = random.choice(drugs)
-                side_effects = random.choice(side_effects_list)
+                drug = self.random.choice(drugs)
+                side_effects = self.random.choice(side_effects_list)
                 content = self.generate_hebrew_medical_document(drug, side_effects)
 
                 doc = {
