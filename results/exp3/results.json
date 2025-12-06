@@ -22,13 +22,13 @@
   "comparison": {
     "full_context": {
       "accuracy": 0.09852264076471329,
-      "latency": 22.747484922409058,
+      "latency": 22.77478289604187,
       "tokens_used": 5758,
       "num_docs_used": 20
     },
     "rag": {
       "accuracy": 0.09064368158578873,
-      "latency": 11.798364162445068,
+      "latency": 11.840310096740723,
       "tokens_used": 281,
       "num_docs_used": 3
     }
@@ -37,7 +37,7 @@
     "full_context": {
       "method": "full_context",
       "response": "\nפנדול (Pfenold) is a medication used to treat various conditions, including anxiety disorders, depression, and obsessive-compulsive disorder. However, like any medication, it can have side effects. Here are some possible side effects of פנדול:\n\n1. Drowsiness: One of the most common side effects of פנדול is drowsiness or fatigue. This can occur within a few hours of taking the medication and can last for several days.\n2. Dizziness or lightheadedness: Some people may experience dizziness or lightheadedness when taking פנדול. This can make it difficult to perform tasks that require coordination and balance.\n3. Headache: Headaches are a common side effect of פנדול, especially when first starting the medication. The headaches can range from mild to severe and may be accompanied by other symptoms such as dizziness or nausea.\n4. Nausea or vomiting: Many people experience nausea or vomiting when taking פנדול, particularly when they first start the medication. This side effect can be uncomfortable but usually subsides within a few days.\n5. Stomach upset: Some people may experience stomach upset, including diarrhea or constipation, when taking פנדול.\n6. Weight gain: פנדול can cause weight gain in some individuals, particularly if they are taking the medication for an extended period. This side effect is usually mild but can be a concern for some people.\n7. Sexual dysfunction: פנדול can cause sexual dysfunction in some individuals, including decreased libido, erectile dysfunction, or decreased orgasmic capacity.\n8. Insomnia: Some people may experience insomnia or difficulty falling asleep when taking פנדול. This side effect can be uncomfortable but usually subsides within a few days.\n9. Agitation or irritability: In rare cases, פנדול can cause agitation or irritability in some individuals.\n10. Allergic reactions: In rare cases, people may experience an allergic reaction to פנדול, which can manifest as hives, itching, swelling, or difficulty breathing.\n\nIt's important to note that not everyone will experience side effects when taking פנדול, and the severity of side effects can vary from person to person. If you are experiencing side effects that are severe or persistent, it's important to consult with your healthcare provider for proper evaluation and treatment.",
-      "latency": 22.747484922409058,
+      "latency": 22.77478289604187,
       "tokens_used": 5758,
       "num_docs_used": 20,
       "success": true,
@@ -52,17 +52,17 @@
     "rag": {
       "method": "rag",
       "response": "The side effects of פנדול (Penicillin) can vary depending on the individual and the specific type of penicillin being used. Here are some common side effects of penicillin:\n\n1. Allergic reactions: Penicillin is one of the most common medications to cause allergic reactions. Symptoms can range from mild hives or itching to severe anaphylaxis, which can be life-threatening. If you experience any symptoms of an allergic reaction after taking penicillin, seek medical attention immediately.\n2. Nausea and vomiting: Many people experience nausea and vomiting after taking penicillin, especially when taken in high doses or for extended periods.\n3. Diarrhea: Penicillin can cause diarrhea in some individuals, especially when taken in large doses or for prolonged periods.\n4. Abdominal pain: Some people may experience abdominal pain or cramping after taking penicillin.\n5. Headache: Mild headaches are a common side effect of penicillin.\n6. Fatigue: Penicillin can cause fatigue and weakness in some individuals, especially when taken for extended periods.\n7. Skin rash: A mild skin rash is a common side effect of penicillin, but it can also be a sign of a more severe allergic reaction.\n8. Joint pain: Some people may experience joint pain or swelling after taking penicillin.\n9. Blood sugar changes: Penicillin can affect blood sugar levels, especially in people with diabetes. Monitor your blood sugar levels closely if you are taking penicillin.\n10. Interaction with other medications: Penicillin can interact with other medications, such as warfarin and insulin, which can lead to serious side effects. Inform your doctor of all medications you are taking before starting penicillin.\n\nIt is important to note that these side effects are generally mild and temporary, but if they persist or worsen, seek medical attention. If you have a history of penicillin allergy or any other serious side effects, consult with your doctor before taking this medication.",
-      "latency": 11.798364162445068,
-      "retrieve_time": 0.029710054397583008,
+      "latency": 11.840310096740723,
+      "retrieve_time": 0.029087066650390625,
       "tokens_used": 281,
       "num_docs_used": 3,
       "retrieved_docs": [
         {
           "content": "מא תצטנפל נונסטי פוסיליס נשואי עמחליף לרטי קולהע גדדיש עמחליף סולגק ליץ אגת יהול בלינדו קלאצי. לפריקך וואל לכנו דלאמת קולהע איבן.",
           "metadata": {
-            "doc_id": "he_med_19",
+            "chunk_id": 2,
             "topic": "medicine",
-            "chunk_id": 2
+            "doc_id": "he_med_19"
           },
           "similarity_score": 1.3171298503875732
         },
@@ -79,8 +79,8 @@
           "content": "יהול. מוסן ברומץ קלובר מונפרר קונסקטורר לפריקך סחטיר אפאח מרגשי קלובר לפתיעם אאוגו שלושע נון כאנה. וסתעד איבן לפריקך דומור עמחליף סת וק מונחף סולגק סטום ניסי אקווזמן. תופעות הלוואי הידועות של אספירין כוללות: גירוי קיבה, אדמומיות, פריחה.. דלאמת סיט קרהשק אס מונפרר לקטוס דס אאוגו סוליסי אגת. בגורמי אגת מרגשי ניבאה וואל וסטיבולום בעליק מנת דלאמת קולהע יהול וסטיבולום הדש נונסטי סחטיר יבש סכעיט לכימפו. לתיג לכימפו תצטריק מגמש סילקוף חשלו בלינדו קולורס בורק? דומור סכעיט. גק חשלו ולחת לרטי. בעריר",
           "metadata": {
             "topic": "medicine",
-            "chunk_id": 1,
-            "doc_id": "he_med_18"
+            "doc_id": "he_med_18",
+            "chunk_id": 1
           },
           "similarity_score": 1.4407415390014648
         }

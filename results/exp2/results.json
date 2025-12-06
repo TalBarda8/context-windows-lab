@@ -17,40 +17,40 @@
       "num_docs": 2,
       "accuracy_mean": 0.41864538192749023,
       "accuracy_std": 0.0,
-      "latency_mean": 0.9916409969329834,
-      "latency_std": 0.4017979754110308,
+      "latency_mean": 0.96317458152771,
+      "latency_std": 0.39198587604131613,
       "tokens_used": 672
     },
     {
       "num_docs": 5,
       "accuracy_mean": 0.3656025230884552,
       "accuracy_std": 0.0,
-      "latency_mean": 0.9823122978210449,
-      "latency_std": 0.7898928155913255,
+      "latency_mean": 0.9866241931915283,
+      "latency_std": 0.7892668726552085,
       "tokens_used": 1659
     },
     {
       "num_docs": 10,
       "accuracy_mean": 0.3674766421318054,
       "accuracy_std": 0.0,
-      "latency_mean": 1.4468838214874267,
-      "latency_std": 1.5567789903375306,
+      "latency_mean": 1.4433003902435302,
+      "latency_std": 1.5510459926577147,
       "tokens_used": 3306
     },
     {
       "num_docs": 20,
       "accuracy_mean": 0.4201604723930359,
       "accuracy_std": 0.0,
-      "latency_mean": 8.0337420463562,
-      "latency_std": 0.15147942909602596,
+      "latency_mean": 7.937698602676392,
+      "latency_std": 0.05411802681629709,
       "tokens_used": 6625
     },
     {
       "num_docs": 50,
       "accuracy_mean": 0.16248007118701935,
       "accuracy_std": 0.0,
-      "latency_mean": 8.03863434791565,
-      "latency_std": 0.10257536054810742,
+      "latency_mean": 7.777299213409424,
+      "latency_std": 0.03884056397780453,
       "tokens_used": 16668
     }
   ],
@@ -59,8 +59,8 @@
       "num_docs": 2,
       "accuracy_mean": 0.41864538192749023,
       "accuracy_std": 0.0,
-      "latency_mean": 0.9916409969329834,
-      "latency_std": 0.4017979754110308,
+      "latency_mean": 0.96317458152771,
+      "latency_std": 0.39198587604131613,
       "tokens_used": 672,
       "iterations": 5,
       "trials": [
@@ -75,7 +75,7 @@
           "semantic_similarity": 0.8678922653198242,
           "overall_score": 0.41864538192749023,
           "extracted_answer": "of $754 million for the fiscal year 2020",
-          "latency": 1.7944340705871582,
+          "latency": 1.7470109462738037,
           "correct": false
         },
         {
@@ -89,7 +89,7 @@
           "semantic_similarity": 0.8678922653198242,
           "overall_score": 0.41864538192749023,
           "extracted_answer": "of $754 million for the fiscal year 2020",
-          "latency": 0.8106811046600342,
+          "latency": 0.7807960510253906,
           "correct": false
         },
         {
@@ -103,7 +103,7 @@
           "semantic_similarity": 0.8678922653198242,
           "overall_score": 0.41864538192749023,
           "extracted_answer": "of $754 million for the fiscal year 2020",
-          "latency": 0.8077797889709473,
+          "latency": 0.7601931095123291,
           "correct": false
         },
         {
@@ -117,7 +117,7 @@
           "semantic_similarity": 0.8678922653198242,
           "overall_score": 0.41864538192749023,
           "extracted_answer": "of $754 million for the fiscal year 2020",
-          "latency": 0.784278154373169,
+          "latency": 0.7616918087005615,
           "correct": false
         },
         {
@@ -131,7 +131,7 @@
           "semantic_similarity": 0.8678922653198242,
           "overall_score": 0.41864538192749023,
           "extracted_answer": "of $754 million for the fiscal year 2020",
-          "latency": 0.7610318660736084,
+          "latency": 0.7661809921264648,
           "correct": false
         }
       ]
@@ -140,8 +140,8 @@
       "num_docs": 5,
       "accuracy_mean": 0.3656025230884552,
       "accuracy_std": 0.0,
-      "latency_mean": 0.9823122978210449,
-      "latency_std": 0.7898928155913255,
+      "latency_mean": 0.9866241931915283,
+      "latency_std": 0.7892668726552085,
       "tokens_used": 1659,
       "iterations": 5,
       "trials": [
@@ -156,7 +156,7 @@
           "semantic_similarity": 0.8219655752182007,
           "overall_score": 0.3656025230884552,
           "extracted_answer": "mentioned in the document is $786 million for the fiscal year 2022",
-          "latency": 2.5620832443237305,
+          "latency": 2.565117835998535,
           "correct": false
         },
         {
@@ -170,7 +170,7 @@
           "semantic_similarity": 0.8219655752182007,
           "overall_score": 0.3656025230884552,
           "extracted_answer": "mentioned in the document is $786 million for the fiscal year 2022",
-          "latency": 0.5936629772186279,
+          "latency": 0.6020309925079346,
           "correct": false
         },
         {
@@ -184,7 +184,7 @@
           "semantic_similarity": 0.8219655752182007,
           "overall_score": 0.3656025230884552,
           "extracted_answer": "mentioned in the document is $786 million for the fiscal year 2022",
-          "latency": 0.5852622985839844,
+          "latency": 0.5877480506896973,
           "correct": false
         },
         {
@@ -198,7 +198,7 @@
           "semantic_similarity": 0.8219655752182007,
           "overall_score": 0.3656025230884552,
           "extracted_answer": "mentioned in the document is $786 million for the fiscal year 2022",
-          "latency": 0.5868868827819824,
+          "latency": 0.5857300758361816,
           "correct": false
         },
         {
@@ -212,7 +212,7 @@
           "semantic_similarity": 0.8219655752182007,
           "overall_score": 0.3656025230884552,
           "extracted_answer": "mentioned in the document is $786 million for the fiscal year 2022",
-          "latency": 0.5836660861968994,
+          "latency": 0.592494010925293,
           "correct": false
         }
       ]
@@ -221,8 +221,8 @@
       "num_docs": 10,
       "accuracy_mean": 0.3674766421318054,
       "accuracy_std": 0.0,
-      "latency_mean": 1.4468838214874267,
-      "latency_std": 1.5567789903375306,
+      "latency_mean": 1.4433003902435302,
+      "latency_std": 1.5510459926577147,
       "tokens_used": 3306,
       "iterations": 5,
       "trials": [
@@ -237,7 +237,7 @@
           "semantic_similarity": 0.8422492742538452,
           "overall_score": 0.3674766421318054,
           "extracted_answer": "mentioned in the documents is $533 million for the fiscal year 2023",
-          "latency": 4.560434818267822,
+          "latency": 4.545389652252197,
           "correct": false
         },
         {
@@ -251,7 +251,7 @@
           "semantic_similarity": 0.8422492742538452,
           "overall_score": 0.3674766421318054,
           "extracted_answer": "mentioned in the documents is $533 million for the fiscal year 2023",
-          "latency": 0.6747610569000244,
+          "latency": 0.6715528964996338,
           "correct": false
         },
         {
@@ -265,7 +265,7 @@
           "semantic_similarity": 0.8422492742538452,
           "overall_score": 0.3674766421318054,
           "extracted_answer": "mentioned in the documents is $533 million for the fiscal year 2023",
-          "latency": 0.6656122207641602,
+          "latency": 0.6672391891479492,
           "correct": false
         },
         {
@@ -279,7 +279,7 @@
           "semantic_similarity": 0.8422492742538452,
           "overall_score": 0.3674766421318054,
           "extracted_answer": "mentioned in the documents is $533 million for the fiscal year 2023",
-          "latency": 0.6675400733947754,
+          "latency": 0.6653401851654053,
           "correct": false
         },
         {
@@ -293,7 +293,7 @@
           "semantic_similarity": 0.8422492742538452,
           "overall_score": 0.3674766421318054,
           "extracted_answer": "mentioned in the documents is $533 million for the fiscal year 2023",
-          "latency": 0.6660709381103516,
+          "latency": 0.6669800281524658,
           "correct": false
         }
       ]
@@ -302,8 +302,8 @@
       "num_docs": 20,
       "accuracy_mean": 0.4201604723930359,
       "accuracy_std": 0.0,
-      "latency_mean": 8.0337420463562,
-      "latency_std": 0.15147942909602596,
+      "latency_mean": 7.937698602676392,
+      "latency_std": 0.05411802681629709,
       "tokens_used": 6625,
       "iterations": 5,
       "trials": [
@@ -318,7 +318,7 @@
           "semantic_similarity": 0.8779927492141724,
           "overall_score": 0.4201604723930359,
           "extracted_answer": "of $424 million for the fiscal year 2021",
-          "latency": 7.91664981842041,
+          "latency": 7.90266227722168,
           "correct": false
         },
         {
@@ -332,7 +332,7 @@
           "semantic_similarity": 0.8779927492141724,
           "overall_score": 0.4201604723930359,
           "extracted_answer": "of $424 million for the fiscal year 2021",
-          "latency": 7.936924934387207,
+          "latency": 7.918398857116699,
           "correct": false
         },
         {
@@ -346,7 +346,7 @@
           "semantic_similarity": 0.8779927492141724,
           "overall_score": 0.4201604723930359,
           "extracted_answer": "of $424 million for the fiscal year 2021",
-          "latency": 7.939807176589966,
+          "latency": 7.881155014038086,
           "correct": false
         },
         {
@@ -360,7 +360,7 @@
           "semantic_similarity": 0.8779927492141724,
           "overall_score": 0.4201604723930359,
           "extracted_answer": "of $424 million for the fiscal year 2021",
-          "latency": 8.054551124572754,
+          "latency": 7.950129985809326,
           "correct": false
         },
         {
@@ -374,7 +374,7 @@
           "semantic_similarity": 0.8779927492141724,
           "overall_score": 0.4201604723930359,
           "extracted_answer": "of $424 million for the fiscal year 2021",
-          "latency": 8.320777177810669,
+          "latency": 8.036146879196167,
           "correct": false
         }
       ]
@@ -383,8 +383,8 @@
       "num_docs": 50,
       "accuracy_mean": 0.16248007118701935,
       "accuracy_std": 0.0,
-      "latency_mean": 8.03863434791565,
-      "latency_std": 0.10257536054810742,
+      "latency_mean": 7.777299213409424,
+      "latency_std": 0.03884056397780453,
       "tokens_used": 16668,
       "iterations": 5,
       "trials": [
@@ -399,7 +399,7 @@
           "semantic_similarity": 0.6565337777137756,
           "overall_score": 0.16248007118701935,
           "extracted_answer": "of the company is mentioned in the document as \"pm $10 billion\"",
-          "latency": 8.191886186599731,
+          "latency": 7.8513500690460205,
           "correct": false
         },
         {
@@ -413,7 +413,7 @@
           "semantic_similarity": 0.6565337777137756,
           "overall_score": 0.16248007118701935,
           "extracted_answer": "of the company is mentioned in the document as \"pm $10 billion\"",
-          "latency": 8.110629320144653,
+          "latency": 7.774760007858276,
           "correct": false
         },
         {
@@ -427,7 +427,7 @@
           "semantic_similarity": 0.6565337777137756,
           "overall_score": 0.16248007118701935,
           "extracted_answer": "of the company is mentioned in the document as \"pm $10 billion\"",
-          "latency": 8.027735948562622,
+          "latency": 7.750942945480347,
           "correct": false
         },
         {
@@ -441,7 +441,7 @@
           "semantic_similarity": 0.6565337777137756,
           "overall_score": 0.16248007118701935,
           "extracted_answer": "of the company is mentioned in the document as \"pm $10 billion\"",
-          "latency": 7.952048063278198,
+          "latency": 7.741705894470215,
           "correct": false
         },
         {
@@ -455,7 +455,7 @@
           "semantic_similarity": 0.6565337777137756,
           "overall_score": 0.16248007118701935,
           "extracted_answer": "of the company is mentioned in the document as \"pm $10 billion\"",
-          "latency": 7.910872220993042,
+          "latency": 7.767737150192261,
           "correct": false
         }
       ]

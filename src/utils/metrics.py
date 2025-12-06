@@ -198,7 +198,7 @@ def perform_t_test(group1: List[float], group2: List[float]) -> Dict[str, Any]:
     return {
         "t_statistic": float(t_stat),
         "p_value": float(p_value),
-        "significant": p_value < 0.05,
+        "significant": bool(p_value < 0.05),
         "effect_size": float(abs(cohens_d)),
     }
 
@@ -255,17 +255,17 @@ def calculate_accuracy_metrics(predicted: str,
         Dictionary with all accuracy metrics
     """
     metrics = {
-        "exact_match": exact_match(predicted, expected),
-        "partial_match": partial_match(predicted, expected),
+        "exact_match": float(exact_match(predicted, expected)),
+        "partial_match": float(partial_match(predicted, expected)),
     }
 
     if keywords:
-        metrics["keyword_match"] = keyword_match(predicted, keywords)
+        metrics["keyword_match"] = float(keyword_match(predicted, keywords))
 
     if predicted_embedding is not None and expected_embedding is not None:
-        metrics["semantic_similarity"] = semantic_similarity(
+        metrics["semantic_similarity"] = float(semantic_similarity(
             predicted_embedding, expected_embedding
-        )
+        ))
 
     # Overall score (weighted average)
     weights = []
@@ -291,7 +291,7 @@ def calculate_accuracy_metrics(predicted: str,
     total_weight = sum(weights)
     if total_weight > 0:
         weights = [w / total_weight for w in weights]
-        metrics["overall_score"] = sum(w * s for w, s in zip(weights, scores))
+        metrics["overall_score"] = float(sum(w * s for w, s in zip(weights, scores)))
     else:
         metrics["overall_score"] = 0.0
 

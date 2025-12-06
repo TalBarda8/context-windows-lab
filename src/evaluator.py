@@ -74,13 +74,45 @@ class Evaluator:
                 print(f"Warning: Could not generate embeddings: {e}")
 
         # Calculate all metrics
+        # Note: keywords should be checked in full response, not just extracted answer
         metrics = calculate_accuracy_metrics(
             predicted=extracted,
             expected=expected_answer,
             predicted_embedding=predicted_embedding,
             expected_embedding=expected_embedding,
-            keywords=keywords,
+            keywords=None,  # Don't check keywords on extracted answer
         )
+
+        # Check keywords in full response
+        if keywords:
+            from utils.metrics import keyword_match
+            metrics["keyword_match"] = keyword_match(response, keywords)
+
+            # Recalculate overall_score with keyword_match included
+            weights = []
+            scores = []
+
+            if "exact_match" in metrics:
+                weights.append(0.4)
+                scores.append(metrics["exact_match"])
+
+            if "partial_match" in metrics:
+                weights.append(0.3)
+                scores.append(metrics["partial_match"])
+
+            if "keyword_match" in metrics:
+                weights.append(0.15)
+                scores.append(metrics["keyword_match"])
+
+            if "semantic_similarity" in metrics:
+                weights.append(0.15)
+                scores.append(metrics["semantic_similarity"])
+
+            # Normalize weights
+            total_weight = sum(weights)
+            if total_weight > 0:
+                weights = [w / total_weight for w in weights]
+                metrics["overall_score"] = sum(w * s for w, s in zip(weights, scores))
 
         # Add extracted answer for debugging
         metrics["extracted_answer"] = extracted
@@ -113,14 +145,15 @@ class Evaluator:
             )
             all_metrics.append(metrics)
 
-        # Extract each metric type
+        # Extract each metric type (including numpy types)
+        import numbers
         metric_names = [k for k in all_metrics[0].keys()
-                       if isinstance(all_metrics[0][k], (int, float))]
+                       if isinstance(all_metrics[0][k], numbers.Number)]
 
         aggregated = {}
 
         for metric_name in metric_names:
-            values = [m[metric_name] for m in all_metrics]
+            values = [float(m[metric_name]) for m in all_metrics]  # Convert to float
             aggregated[metric_name] = calculate_statistics(values)
 
         return aggregated
@@ -190,8 +223,9 @@ class ExperimentEvaluator(Evaluator):
         )
 
         metrics["position"] = position
-        metrics["correct"] = metrics["exact_match"] > 0.5 or \
-                            metrics["partial_match"] > 0.8
+        metrics["correct"] = bool(metrics["exact_match"] > 0.5 or \
+                                 metrics["partial_match"] > 0.8 or \
+                                 metrics.get("keyword_match", 0) > 0.9)
 
         return metrics
 
@@ -220,7 +254,7 @@ class ExperimentEvaluator(Evaluator):
 
         metrics["num_docs"] = num_docs
         metrics["latency"] = latency
-        metrics["correct"] = metrics["partial_match"] > 0.6
+        metrics["correct"] = bool(metrics["partial_match"] > 0.6)
 
         return metrics
 
@@ -252,7 +286,8 @@ class ExperimentEvaluator(Evaluator):
 
         metrics["method"] = method
         metrics["latency"] = latency
-        metrics["correct"] = metrics["overall_score"] > 0.5
+        metrics["correct"] = bool(metrics["overall_score"] > 0.5 or \
+                                 metrics.get("keyword_match", 0) > 0.9)
 
         return metrics
 
@@ -283,7 +318,7 @@ class ExperimentEvaluator(Evaluator):
         metrics["strategy"] = strategy
         metrics["step"] = step
         metrics["context_size"] = context_size
-        metrics["correct"] = metrics["overall_score"] > 0.5
+        metrics["correct"] = bool(metrics["overall_score"] > 0.5)
 
         return metrics
 
@@ -307,7 +342,7 @@ class ExperimentEvaluator(Evaluator):
         group2_values = [r[metric_name] for r in group2_results
                         if metric_name in r]
 
-        if not group1_values or not group2_values:
+        if not group1_values or not group2_values or len(group1_values) < 2 or len(group2_values) < 2:
             return {
                 "error": "Insufficient data for comparison"
             }
