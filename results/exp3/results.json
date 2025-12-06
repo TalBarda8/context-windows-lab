@@ -1,13 +1,13 @@
 {
   "experiment": "RAG Impact",
   "config": {
-    "num_documents": 10,
+    "num_documents": 20,
     "topics": [
       "technology",
       "law",
       "medicine"
     ],
-    "chunk_size": 400,
+    "chunk_size": 500,
     "chunk_overlap": 50,
     "top_k_retrieval": 3,
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
@@ -21,30 +21,81 @@
   "expected_answer": "כאב ראש, בחילה, סחרחורת",
   "comparison": {
     "full_context": {
-      "accuracy": 0.08302827179431915,
-      "latency": 18.917808055877686,
-      "tokens_used": 2877,
-      "num_docs_used": 10
+      "accuracy": 0.09852264076471329,
+      "latency": 22.747484922409058,
+      "tokens_used": 5758,
+      "num_docs_used": 20
     },
     "rag": {
-      "accuracy": 0.10204355418682098,
-      "latency": 9.649329662322998,
-      "tokens_used": 235,
+      "accuracy": 0.09064368158578873,
+      "latency": 11.798364162445068,
+      "tokens_used": 281,
       "num_docs_used": 3
     }
   },
   "detailed_results": {
     "full_context": {
       "method": "full_context",
-      "response": "\nפנדול (Pandrol) is a medication used to treat nausea and vomiting caused by chemotherapy or other medical conditions. As with any medication, פנדול can cause side effects, some of which are common and mild, while others are less common and more severe. Here are some possible side effects of פנדול:\n\nCommon side effects:\n\n* Dizziness or lightheadedness\n* Headache\n* Fatigue or weakness\n* Nausea or vomiting (less common than with other anti-nausea medications)\n* Diarrhea or constipation\n* Stomach cramps or discomfort\n* Sleep disturbances (insomnia or vivid dreams)\n\nLess common side effects:\n\n* Changes in taste or smell\n* Mood changes (such as anxiety, depression, or irritability)\n* Confusion or disorientation\n* Hallucinations (visual or auditory)\n* Seizures or convulsions\n* Allergic reactions (such as rash, itching, or difficulty breathing)\n\nSerious side effects:\n\n* Severe allergic reactions\n* Seizures or convulsions\n* Eye problems (such as blurred vision, double vision, or eye pain)\n* Hearing problems (such as hearing loss or ringing in the ears)\n* Liver damage or abnormal liver function tests\n* Kidney damage or abnormal kidney function tests\n* Blood problems (such as low white blood cell count or low platelet count)\n\nIt is important to note that this list of side effects is not exhaustive, and you should consult your doctor if you experience any unusual symptoms while taking פנדול. Your doctor may adjust your dosage or recommend a different medication to minimize side effects. Additionally, it is essential to follow the instructions provided by your healthcare professional when taking פנדול to reduce the risk of side effects.",
-      "latency": 18.917808055877686,
-      "tokens_used": 2877,
-      "num_docs_used": 10,
+      "response": "\nפנדול (Pfenold) is a medication used to treat various conditions, including anxiety disorders, depression, and obsessive-compulsive disorder. However, like any medication, it can have side effects. Here are some possible side effects of פנדול:\n\n1. Drowsiness: One of the most common side effects of פנדול is drowsiness or fatigue. This can occur within a few hours of taking the medication and can last for several days.\n2. Dizziness or lightheadedness: Some people may experience dizziness or lightheadedness when taking פנדול. This can make it difficult to perform tasks that require coordination and balance.\n3. Headache: Headaches are a common side effect of פנדול, especially when first starting the medication. The headaches can range from mild to severe and may be accompanied by other symptoms such as dizziness or nausea.\n4. Nausea or vomiting: Many people experience nausea or vomiting when taking פנדול, particularly when they first start the medication. This side effect can be uncomfortable but usually subsides within a few days.\n5. Stomach upset: Some people may experience stomach upset, including diarrhea or constipation, when taking פנדול.\n6. Weight gain: פנדול can cause weight gain in some individuals, particularly if they are taking the medication for an extended period. This side effect is usually mild but can be a concern for some people.\n7. Sexual dysfunction: פנדול can cause sexual dysfunction in some individuals, including decreased libido, erectile dysfunction, or decreased orgasmic capacity.\n8. Insomnia: Some people may experience insomnia or difficulty falling asleep when taking פנדול. This side effect can be uncomfortable but usually subsides within a few days.\n9. Agitation or irritability: In rare cases, פנדול can cause agitation or irritability in some individuals.\n10. Allergic reactions: In rare cases, people may experience an allergic reaction to פנדול, which can manifest as hives, itching, swelling, or difficulty breathing.\n\nIt's important to note that not everyone will experience side effects when taking פנדול, and the severity of side effects can vary from person to person. If you are experiencing side effects that are severe or persistent, it's important to consult with your healthcare provider for proper evaluation and treatment.",
+      "latency": 22.747484922409058,
+      "tokens_used": 5758,
+      "num_docs_used": 20,
       "success": true,
       "exact_match": 0.0,
-      "partial_match": 0.014388489208633094,
+      "partial_match": 0.06134969325153374,
       "keyword_match": 0.0,
-      "semantic_similarity": 0.5247448086738586,
-      "overall_score": 0.08302827179431915,
-      "extracted_answer": "פנדול (Pandrol) is a medication used to treat nausea and vomiting caused by chemotherapy or other medical conditions",
-      "correct": 
+      "semantic_similarity": 0.5341181755065918,
+      "overall_score": 0.09852264076471329,
+      "extracted_answer": "פנדול (Pfenold) is a medication used to treat various conditions, including anxiety disorders, depression, and obsessive-compulsive disorder",
+      "correct": false
+    },
+    "rag": {
+      "method": "rag",
+      "response": "The side effects of פנדול (Penicillin) can vary depending on the individual and the specific type of penicillin being used. Here are some common side effects of penicillin:\n\n1. Allergic reactions: Penicillin is one of the most common medications to cause allergic reactions. Symptoms can range from mild hives or itching to severe anaphylaxis, which can be life-threatening. If you experience any symptoms of an allergic reaction after taking penicillin, seek medical attention immediately.\n2. Nausea and vomiting: Many people experience nausea and vomiting after taking penicillin, especially when taken in high doses or for extended periods.\n3. Diarrhea: Penicillin can cause diarrhea in some individuals, especially when taken in large doses or for prolonged periods.\n4. Abdominal pain: Some people may experience abdominal pain or cramping after taking penicillin.\n5. Headache: Mild headaches are a common side effect of penicillin.\n6. Fatigue: Penicillin can cause fatigue and weakness in some individuals, especially when taken for extended periods.\n7. Skin rash: A mild skin rash is a common side effect of penicillin, but it can also be a sign of a more severe allergic reaction.\n8. Joint pain: Some people may experience joint pain or swelling after taking penicillin.\n9. Blood sugar changes: Penicillin can affect blood sugar levels, especially in people with diabetes. Monitor your blood sugar levels closely if you are taking penicillin.\n10. Interaction with other medications: Penicillin can interact with other medications, such as warfarin and insulin, which can lead to serious side effects. Inform your doctor of all medications you are taking before starting penicillin.\n\nIt is important to note that these side effects are generally mild and temporary, but if they persist or worsen, seek medical attention. If you have a history of penicillin allergy or any other serious side effects, consult with your doctor before taking this medication.",
+      "latency": 11.798364162445068,
+      "retrieve_time": 0.029710054397583008,
+      "tokens_used": 281,
+      "num_docs_used": 3,
+      "retrieved_docs": [
+        {
+          "content": "מא תצטנפל נונסטי פוסיליס נשואי עמחליף לרטי קולהע גדדיש עמחליף סולגק ליץ אגת יהול בלינדו קלאצי. לפריקך וואל לכנו דלאמת קולהע איבן.",
+          "metadata": {
+            "doc_id": "he_med_19",
+            "topic": "medicine",
+            "chunk_id": 2
+          },
+          "similarity_score": 1.3171298503875732
+        },
+        {
+          "content": "איבן כלרשט דס צורק לתכי בליקרה ניסי אפאח נולום ערששף יבש סחטיר דולור איפסום ותלברו לפמעט שערש נונסטי שהכים. קונסקטורר ליץ אמט קלובר נמרגי למטכין קלובר עמחליף נון מיחוצים. בראיט תצטנפל שערש ערששף בלובק יהול תצטריק. גולר צוט בליקרה מונפרד וולופטה סאפיאן ערששף אס לתיג לרטי קולהע למרקל רוגצה אגת ניסי מונחף סכעיט בגורמי בליקרה לתכי מגמש שעותלשך אקווזמן. לתכי אקווזמן היושבב לפתיעם ולתיעם יבש ותלברו לכימפו מוסן איאקוליס הדש בלינך מוסן. זותה קונסקטורר ניבאה. סוליסי רוגצה קלובר. ולחת סתשם התידם. קולהע",
+          "metadata": {
+            "topic": "technology",
+            "chunk_id": 0,
+            "doc_id": "he_technology_14"
+          },
+          "similarity_score": 1.4373095035552979
+        },
+        {
+          "content": "יהול. מוסן ברומץ קלובר מונפרר קונסקטורר לפריקך סחטיר אפאח מרגשי קלובר לפתיעם אאוגו שלושע נון כאנה. וסתעד איבן לפריקך דומור עמחליף סת וק מונחף סולגק סטום ניסי אקווזמן. תופעות הלוואי הידועות של אספירין כוללות: גירוי קיבה, אדמומיות, פריחה.. דלאמת סיט קרהשק אס מונפרר לקטוס דס אאוגו סוליסי אגת. בגורמי אגת מרגשי ניבאה וואל וסטיבולום בעליק מנת דלאמת קולהע יהול וסטיבולום הדש נונסטי סחטיר יבש סכעיט לכימפו. לתיג לכימפו תצטריק מגמש סילקוף חשלו בלינדו קולורס בורק? דומור סכעיט. גק חשלו ולחת לרטי. בעריר",
+          "metadata": {
+            "topic": "medicine",
+            "chunk_id": 1,
+            "doc_id": "he_med_18"
+          },
+          "similarity_score": 1.4407415390014648
+        }
+      ],
+      "success": true,
+      "exact_match": 0.0,
+      "partial_match": 0.05517241379310345,
+      "keyword_match": 0.0,
+      "semantic_similarity": 0.493946373462677,
+      "overall_score": 0.09064368158578873,
+      "extracted_answer": "The side effects of פנדול (Penicillin) can vary depending on the individual and the specific type of penicillin being used",
+      "correct": false
+    },
+    "query": "What are the side effects of פנדול?",
+    "expected_answer": "כאב ראש, בחילה, סחרחורת",
+    "drug_name": "פנדול"
+  }
+}
