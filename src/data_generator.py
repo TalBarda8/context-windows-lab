@@ -240,10 +240,13 @@ class DataGenerator:
             # Use same revenue value across all documents in this set
             revenue_value = f"${random.randint(100, 999)} million"
 
+            # Select one random document to embed the fact
+            target_doc_index = random.randint(0, count - 1)
+
             docs = []
             for i in range(count):
-                # Only embed fact in one random document
-                if i == random.randint(0, count - 1):
+                # Only embed fact in the target document
+                if i == target_doc_index:
                     doc_data = self.generate_context_size_document(
                         words=words_per_doc,
                         revenue_value=revenue_value
