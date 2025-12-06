@@ -56,7 +56,7 @@ EXP1_CONFIG = {
     "num_documents": 5,  # Number of documents to generate
     "words_per_document": 200,  # Words in each document
     "positions": ["start", "middle", "end"],  # Fact positions to test
-    "iterations_per_position": 3,  # Reduced for faster runtime (was 10)
+    "iterations_per_position": 10,  # Number of iterations per position
     "critical_fact_template": "The secret password is {password}.",
     "query_template": "What is the secret password mentioned in the documents?",
 }
@@ -66,9 +66,9 @@ EXP1_CONFIG = {
 # ============================================================================
 
 EXP2_CONFIG = {
-    "document_counts": [2, 5, 10, 20],  # Varying context sizes (removed 50 for speed)
-    "words_per_document": 150,  # Reduced from 200 for faster processing
-    "iterations_per_size": 3,  # Reduced from 5 for faster runtime
+    "document_counts": [2, 5, 10, 20, 50],  # Varying context sizes to test
+    "words_per_document": 200,  # Words in each document
+    "iterations_per_size": 5,  # Number of iterations per size
     "question_template": "What is the company's annual revenue mentioned in the documents?",
 }
 
@@ -77,9 +77,9 @@ EXP2_CONFIG = {
 # ============================================================================
 
 EXP3_CONFIG = {
-    "num_documents": 10,  # Reduced from 20 for faster generation
+    "num_documents": 20,  # Number of Hebrew documents to generate
     "topics": ["technology", "law", "medicine"],  # Document categories
-    "chunk_size": 400,  # Reduced from 500 for faster processing
+    "chunk_size": 500,  # Tokens per chunk for RAG
     "chunk_overlap": 50,  # Overlap between chunks
     "top_k_retrieval": 3,  # Number of chunks to retrieve
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
