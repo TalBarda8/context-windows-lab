@@ -177,6 +177,23 @@ Compare Retrieval-Augmented Generation (RAG) against full-context approaches for
 
 ---
 
+### RAG Parameter Sensitivity Analysis
+
+To better understand the impact of RAG configuration on retrieval quality, we performed a sensitivity analysis varying two key parameters: **chunk_size** (250, 500, 750 tokens) and **top_k** (1, 3, 5 retrieved documents).
+
+**Methodology**: We generated 10 synthetic documents containing factual information and tested retrieval performance across 3 questions for each parameter combination (27 total queries). Documents were embedded and retrieved using ChromaDB with sentence-transformers embeddings.
+
+**Key Findings**:
+
+The sensitivity analysis revealed relatively stable performance across different parameter combinations, with all configurations achieving 100% success rates. Average response lengths varied only slightly (33-38 characters), suggesting that the LLM generates consistent, concise responses regardless of the amount of retrieved context. Smaller chunk sizes (250 tokens) produced more granular chunks (70 chunks from 10 documents), while larger chunks (750 tokens) resulted in fewer, more comprehensive chunks (20 chunks). The number of retrieved documents (top_k) showed minimal impact on response quality for this test set, indicating that even a single relevant chunk is often sufficient for simple factual questions.
+
+**Implications**: For production RAG systems, chunk_size should be optimized based on document structure and query complexity. Our results suggest that moderate chunk sizes (500 tokens) provide a good balance between granularity and context preservation. The top_k parameter can be kept conservative (k=1-3) for straightforward retrieval tasks, with higher values reserved for complex queries requiring multiple perspectives or evidence synthesis. The heatmap visualization (Figure 3.1) illustrates these parameter relationships.
+
+![RAG Sensitivity Analysis](../results/exp3/sensitivity_analysis_heatmap.png)
+*Figure 3.1: RAG parameter sensitivity analysis showing average response length across chunk_size and top_k combinations.*
+
+---
+
 ## Experiment 4: Context Engineering Strategies
 
 ### Objective
