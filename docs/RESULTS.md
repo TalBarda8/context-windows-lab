@@ -30,6 +30,36 @@ This document presents the results and analysis from four experiments investigat
 
 ---
 
+## Metrics Definitions
+
+Throughout our experiments, we employ the following quantitative metrics:
+
+**Accuracy** - Measures exact match between predicted and expected answers:
+
+$$
+\text{Accuracy} = \frac{1}{N} \sum_{i=1}^{N} \mathbb{1}[\text{predicted}_i = \text{expected}_i]
+$$
+
+where $\mathbb{1}$ is the indicator function returning 1 for exact matches and 0 otherwise.
+
+**Cosine Similarity** - Measures semantic similarity between embedding vectors:
+
+$$
+\text{similarity}(\mathbf{a}, \mathbf{b}) = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|} = \frac{\sum_{i=1}^{d} a_i b_i}{\sqrt{\sum_{i=1}^{d} a_i^2} \sqrt{\sum_{i=1}^{d} b_i^2}}
+$$
+
+where $\mathbf{a}, \mathbf{b} \in \mathbb{R}^d$ are embedding vectors with dimensionality $d$.
+
+**Retrieval Score** - Combines relevance ranking for RAG systems:
+
+$$
+\text{score}(q, D) = \sum_{i=1}^{k} w_i \cdot \text{similarity}(q, d_i), \quad w_i = \frac{k - i + 1}{\sum_{j=1}^{k} j}
+$$
+
+where $q$ is the query embedding, $D = \{d_1, \ldots, d_k\}$ are the top-$k$ retrieved documents, and $w_i$ provides position-based weighting favoring higher-ranked results.
+
+---
+
 ## Experiment 1: Needle in Haystack
 
 ### Objective
