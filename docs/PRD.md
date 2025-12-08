@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD)
 # Context Windows Lab
 
-**Version**: 1.0.0
-**Date**: December 6, 2025
+**Version**: 1.1.0
+**Date**: December 8, 2025
 **Owner**: Tal Barda
 **Course**: LLMs in Multi-Agent Environments
 **Instructor**: Dr. Yoram Segal
@@ -418,7 +418,7 @@ Acceptance Criteria:
 | **Phase 3: Experiments** | Week 3 | Exp 1-4 implementation | ✅ Complete |
 | **Phase 4: Analysis** | Week 4 | Notebooks, visualizations | ✅ Complete |
 | **Phase 5: Documentation** | Week 5 | README, RPD, RESULTS | ✅ Complete |
-| **Phase 6: Compliance** | Week 6 | PRD, Architecture, API docs | 🚧 In Progress |
+| **Phase 6: Compliance** | Week 6 | PRD, Architecture, API docs, Tests | ✅ Complete |
 
 ### 8.2 Milestones
 
@@ -429,7 +429,7 @@ Acceptance Criteria:
 | **M3: All Experiments** | Exp1-4 all working | Dec 3, 2025 |
 | **M4: Bug Fixes** | 50-doc test works, JSON saves | Dec 4, 2025 |
 | **M5: Documentation** | README, RESULTS complete | Dec 5, 2025 |
-| **M6: Full Compliance** | Meets all guideline requirements | Dec 6, 2025 |
+| **M6: Full Compliance** | Meets all guideline requirements | Dec 8, 2025 |
 
 ---
 
@@ -448,10 +448,11 @@ Acceptance Criteria:
 - ✅ Jupyter notebooks for deeper analysis
 - ✅ Statistical significance testing
 - ✅ Cross-experiment comparisons
-- 🚧 Full guideline compliance documentation
+- ✅ Full guideline compliance documentation
 
 **Nice-to-Have (P2):**
-- ⬜ Unit tests with 70%+ coverage
+- ✅ Unit tests with 70%+ coverage
+- ✅ RAG parameter sensitivity analysis
 - ⬜ CI/CD pipeline
 - ⬜ Docker containerization
 - ⬜ Multi-model comparison
@@ -557,6 +558,7 @@ Acceptance Criteria:
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0.0 | Dec 6, 2025 | Initial PRD creation | Tal Barda |
+| 1.1.0 | Dec 8, 2025 | Updated to reflect project completion: Phase 6 complete, M6 achieved, test coverage 70%+, sensitivity analysis added | Tal Barda |
 
 ---
 
