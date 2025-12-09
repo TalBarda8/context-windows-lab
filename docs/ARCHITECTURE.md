@@ -415,6 +415,228 @@ Each experiment module is an independent building block that:
 
 ---
 
+### 6.3 UML Diagrams
+
+#### 6.3.1 Class Diagram
+
+The following class diagram shows the main classes and their relationships in the system:
+
+```mermaid
+classDiagram
+    class LLMInterface {
+        +llm: Ollama
+        +model_name: str
+        +invoke(prompt: str) str
+        +batch_invoke(prompts: List~str~) List~str~
+        +query_with_template(template: str, **kwargs) str
+        +count_tokens(text: str) int
+    }
+
+    class EmbeddingInterface {
+        +model: SentenceTransformer
+        +model_name: str
+        +embed_text(text: str) np.ndarray
+        +embed_documents(documents: List~str~) List~np.ndarray~
+    }
+
+    class RAGSystem {
+        +llm_interface: LLMInterface
+        +embedding_interface: EmbeddingInterface
+        +collection: ChromaCollection
+        +chunk_size: int
+        +chunk_overlap: int
+        +add_documents(documents: List~str~) void
+        +query_with_rag(query: str, top_k: int) str
+        +get_relevant_context(query: str, top_k: int) List~str~
+    }
+
+    class DataGenerator {
+        +faker_en: Faker
+        +faker_he: Faker
+        +random: Random
+        +generate_filler_text(num_words: int, language: str) str
+        +embed_fact_in_text(text: str, fact: str, position: str) str
+        +generate_needle_haystack_data(num_trials: int) List~dict~
+        +generate_context_size_data(num_sizes: int) List~dict~
+        +generate_rag_corpus(num_docs: int, language: str) List~str~
+        +generate_action_sequences(num_actions: int) List~str~
+    }
+
+    class Evaluator {
+        +embedding_interface: EmbeddingInterface
+        +evaluate(predicted: str, expected: str) dict
+        +exact_match(predicted: str, expected: str) bool
+        +partial_match(predicted: str, expected: str) float
+        +semantic_similarity(predicted: str, expected: str) float
+        +keyword_match(predicted: str, expected: List~str~) float
+        +fuzzy_ratio(predicted: str, expected: str) float
+    }
+
+    class ExperimentEvaluator {
+        +evaluator: Evaluator
+        +batch_evaluate(results: List~dict~) dict
+        +calculate_statistics(scores: List~float~) dict
+        +significance_test(group1: List~float~, group2: List~float~) dict
+        +save_results(results: dict, output_path: Path) void
+        +load_results(input_path: Path) dict
+    }
+
+    RAGSystem --> LLMInterface : uses
+    RAGSystem --> EmbeddingInterface : uses
+    Evaluator --> EmbeddingInterface : uses
+    ExperimentEvaluator --> Evaluator : extends
+```
+
+**Key Relationships:**
+- `RAGSystem` **depends on** both `LLMInterface` and `EmbeddingInterface` for retrieval-augmented generation
+- `Evaluator` **uses** `EmbeddingInterface` for semantic similarity calculations
+- `ExperimentEvaluator` **extends** `Evaluator` with batch processing and statistical analysis capabilities
+- `DataGenerator` is **independent**, generating synthetic data for all experiments
+
+#### 6.3.2 Sequence Diagram: Experiment 1 (Needle in Haystack)
+
+This diagram shows the workflow for testing fact retrieval at different positions in context:
+
+```mermaid
+sequenceDiagram
+    participant Main as Experiment 1 Runner
+    participant DG as DataGenerator
+    participant LLM as LLMInterface
+    participant Eval as ExperimentEvaluator
+    participant FS as File System
+
+    Main->>DG: generate_needle_haystack_data(num_trials=10, positions=[start, middle, end])
+    DG-->>Main: List[{haystack, needle, position, question}]
+
+    loop For each trial
+        Main->>LLM: invoke(question + haystack)
+        LLM-->>Main: predicted_answer
+        Main->>Eval: evaluate(predicted, expected)
+        Eval-->>Main: {exact_match, partial, similarity, ...}
+    end
+
+    Main->>Eval: batch_evaluate(all_results)
+    Eval->>Eval: calculate_statistics(scores)
+    Eval->>Eval: significance_test(start vs middle vs end)
+    Eval-->>Main: {mean, std, p_values, effect_sizes}
+
+    Main->>FS: save_results(results, "results/exp1/results.json")
+    Main->>FS: plot_accuracy_by_position(results, "results/exp1/accuracy_plot.png")
+```
+
+**Key Steps:**
+1. Generate synthetic haystacks with embedded needles at different positions
+2. Query LLM with each haystack and measure accuracy
+3. Evaluate predictions using multiple metrics
+4. Calculate statistical significance of position effects
+5. Save results and generate visualizations
+
+#### 6.3.3 Sequence Diagram: Experiment 3 (RAG Workflow)
+
+This diagram shows the comparison between RAG and full-context approaches:
+
+```mermaid
+sequenceDiagram
+    participant Main as Experiment 3 Runner
+    participant DG as DataGenerator
+    participant RAG as RAGSystem
+    participant Emb as EmbeddingInterface
+    participant LLM as LLMInterface
+    participant Eval as ExperimentEvaluator
+
+    Main->>DG: generate_rag_corpus(num_docs=50, language="he")
+    DG-->>Main: Hebrew corpus (50 documents)
+
+    rect rgb(200, 220, 250)
+        Note over Main,RAG: RAG Approach
+        Main->>RAG: new RAGSystem(llm, embedding, chunk_size=500)
+        Main->>RAG: add_documents(corpus)
+        RAG->>Emb: embed_documents(corpus_chunks)
+        Emb-->>RAG: embeddings
+        RAG->>RAG: store in ChromaDB collection
+
+        loop For each question
+            Main->>RAG: query_with_rag(question, top_k=3)
+            RAG->>Emb: embed_text(question)
+            Emb-->>RAG: query_embedding
+            RAG->>RAG: search similar chunks (top_k=3)
+            RAG->>LLM: invoke(question + relevant_context)
+            LLM-->>RAG: answer
+            RAG-->>Main: answer, retrieved_context
+            Main->>Eval: evaluate(answer, expected)
+        end
+    end
+
+    rect rgb(250, 220, 200)
+        Note over Main,LLM: Full Context Approach
+        loop For each question
+            Main->>LLM: invoke(question + full_corpus)
+            LLM-->>Main: answer
+            Main->>Eval: evaluate(answer, expected)
+        end
+    end
+
+    Main->>Eval: batch_evaluate(rag_results vs full_context_results)
+    Eval->>Eval: compare accuracy, latency, token_usage
+    Eval-->>Main: comparison_results
+```
+
+**Key Comparisons:**
+- **RAG**: Retrieves only top-k relevant chunks (efficient, lower token usage)
+- **Full Context**: Processes entire corpus (comprehensive but expensive)
+- Metrics: Accuracy, latency, token count, cost
+
+#### 6.3.4 Sequence Diagram: Experiment 4 (Context Engineering Strategies)
+
+This diagram shows the three strategies for managing long action histories:
+
+```mermaid
+sequenceDiagram
+    participant Main as Experiment 4 Runner
+    participant DG as DataGenerator
+    participant LLM as LLMInterface
+    participant Eval as ExperimentEvaluator
+
+    Main->>DG: generate_action_sequences(num_actions=50)
+    DG-->>Main: action_history (50 actions)
+
+    rect rgb(255, 240, 245)
+        Note over Main,LLM: Strategy 1: SELECT (Sliding Window)
+        Main->>Main: select_last_N_actions(window_size=10)
+        Main->>LLM: invoke(question + last_10_actions)
+        LLM-->>Main: answer_select
+        Main->>Eval: evaluate(answer_select, expected)
+    end
+
+    rect rgb(240, 255, 245)
+        Note over Main,LLM: Strategy 2: COMPRESS (Summarization)
+        Main->>LLM: invoke("Summarize: " + action_history)
+        LLM-->>Main: compressed_history
+        Main->>LLM: invoke(question + compressed_history)
+        LLM-->>Main: answer_compress
+        Main->>Eval: evaluate(answer_compress, expected)
+    end
+
+    rect rgb(245, 245, 255)
+        Note over Main,LLM: Strategy 3: WRITE (Scratchpad)
+        Main->>Main: extract_key_facts(action_history)
+        Main->>LLM: invoke(question + scratchpad_facts)
+        LLM-->>Main: answer_write
+        Main->>Eval: evaluate(answer_write, expected)
+    end
+
+    Main->>Eval: batch_evaluate([select, compress, write])
+    Eval->>Eval: compare accuracy, tokens, latency
+    Eval-->>Main: {best_strategy, trade_offs}
+```
+
+**Strategy Comparison:**
+- **SELECT (Sliding Window)**: Keep only recent N actions (simple, loses history)
+- **COMPRESS (Summarization)**: LLM compresses history (preserves key info, 2 LLM calls)
+- **WRITE (Scratchpad)**: Extract key facts to memory (efficient, requires fact extraction)
+
+---
+
 ## 7. Design Decisions (ADRs)
 
 ### ADR-001: Use Ollama for LLM Inference
