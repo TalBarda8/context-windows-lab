@@ -97,7 +97,7 @@ context-windows-lab/
 - Visualizations
 - Combined conclusions
 
-**RPD Document** (`docs/RPD.md`)
+**PRD Document** (`docs/PRD.md`)
 - Research questions
 - Methodology
 - Architecture
@@ -197,7 +197,7 @@ git push
 
 | Requirement | Status | Evidence |
 |------------|--------|----------|
-| RPD Document | ✅ Complete | `docs/RPD.md` |
+| PRD Document | ✅ Complete | `docs/PRD.md` |
 | Experiment 1 | ✅ Implemented | `src/experiments/exp1_needle_haystack.py` |
 | Experiment 2 | ✅ Implemented | `src/experiments/exp2_context_size.py` |
 | Experiment 3 | ✅ Implemented | `src/experiments/exp3_rag_impact.py` |

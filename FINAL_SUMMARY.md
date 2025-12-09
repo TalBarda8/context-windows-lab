@@ -169,7 +169,7 @@ context-windows-lab/
 ├── notebooks/            ← Jupyter analysis
 ├── scripts/              ← Automation scripts
 ├── docs/
-│   ├── RPD.md           ← Research plan (complete)
+│   ├── PRD.md           ← Product requirements (complete)
 │   └── RESULTS.md       ← Template (fill this in)
 ├── HOW_TO_RUN.md        ← Your guide
 └── FINAL_SUMMARY.md     ← This file
@@ -307,7 +307,7 @@ nano src/config.py
 
 - **HOW_TO_RUN.md**: Detailed running instructions
 - **README.md**: Project overview and setup
-- **docs/RPD.md**: Research plan and methodology
+- **docs/PRD.md**: Product requirements and methodology
 - **src/config.py**: All configurable parameters
 - **requirements.txt**: All dependencies
 

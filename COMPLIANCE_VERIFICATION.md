@@ -69,7 +69,7 @@
 
 | Document | Required | Status | Location |
 |----------|----------|--------|----------|
-| RPD (Research Plan) | ✅ | ✅ Complete | docs/RPD.md |
+| PRD (Product Requirements) | ✅ | ✅ Complete | docs/PRD.md |
 | RESULTS (Analysis) | ✅ | ✅ Complete | docs/RESULTS.md |
 | README | ✅ | ✅ Complete | README.md |
 | HOW_TO_RUN | ✅ | ✅ Complete | HOW_TO_RUN.md |

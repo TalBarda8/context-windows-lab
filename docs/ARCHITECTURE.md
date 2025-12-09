@@ -717,7 +717,7 @@ context-windows-lab/
 ├── tests/                      # Future: unit tests
 ├── docs/
 │   ├── ARCHITECTURE.md         # This file
-│   ├── RPD.md
+│   ├── PRD.md
 │   ├── RESULTS.md
 │   └── API.md                  # Future: API reference
 ├── data/                       # Generated datasets
