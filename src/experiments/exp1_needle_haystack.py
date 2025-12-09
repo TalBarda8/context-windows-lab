@@ -57,6 +57,7 @@ class NeedleHaystackExperiment:
         dataset = self.data_generator.generate_needle_haystack_dataset(
             num_docs=self.config["iterations_per_position"],
             words_per_doc=self.config["words_per_document"],
+            num_haystack_docs=self.config["num_haystack_docs"],
             save_path=NEEDLE_HAYSTACK_DIR / "dataset.json"
         )
 

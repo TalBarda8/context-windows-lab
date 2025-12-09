@@ -14,17 +14,17 @@
   },
   "summary": {
     "select": {
-      "mean_accuracy": 0.10925377905368805,
+      "mean_accuracy": 0.10925377817714917,
       "correct_count": 0,
       "total_steps": 1
     },
     "compress": {
-      "mean_accuracy": 0.11010561883449554,
+      "mean_accuracy": 0.11010561620487887,
       "correct_count": 0,
       "total_steps": 1
     },
     "write": {
-      "mean_accuracy": 0.10625508427619934,
+      "mean_accuracy": 0.10625507901696599,
       "correct_count": 0,
       "total_steps": 1
     }
@@ -35,7 +35,7 @@
         "step": 10,
         "strategy": "select",
         "context_size": 73,
-        "accuracy": 0.10925377905368805,
+        "accuracy": 0.10925377817714917,
         "correct": false,
         "query": "What is the total revenue from all orders?",
         "response": "To find the total revenue from all orders, we need to calculate the total amount paid for each order and then sum them up.\n\nFor Alice's order, the total amount paid is $999.\nFor Bob's order, the total amount paid is $58.\n\nSo, the total revenue from all orders is:\n$999 + $58 = $1057\n\nTherefore, the total revenue from all orders is $1057.",
@@ -47,7 +47,7 @@
         "step": 10,
         "strategy": "compress",
         "context_size": 134,
-        "accuracy": 0.11010561883449554,
+        "accuracy": 0.11010561620487887,
         "correct": false,
         "query": "What is the total revenue from all orders?",
         "response": "To calculate the total revenue from all orders, we need to sum up the prices of all products in each order.\n\nLet's break down the data given in the problem:\n\n1. User Alice ordered 1 Laptop for $999. So, the revenue from her order is $999.\n2. User Bob ordered 2 Mice for $58. So, the revenue from his order is $58.\n\nTotal revenue from all orders = Revenue from Alice's order + Revenue from Bob's order\n= $999 + $58\n= $1057\n\nTherefore, the total revenue from all orders is $1057.",
@@ -59,7 +59,7 @@
         "step": 10,
         "strategy": "write",
         "context_size": 191,
-        "accuracy": 0.10625508427619934,
+        "accuracy": 0.10625507901696599,
         "correct": false,
         "query": "What is the total revenue from all orders?",
         "response": "To calculate the total revenue from all orders, we need to multiply the total cost of each product by the quantity ordered. Here are the calculations:\n\n1. Laptop: $999 x 1 = $999\n2. Mouse: $29 x 1 = $29\n3. Keyboard: $79 x 1 = $79\n4. Total revenue = $999 + $29 + $79 = $1097\n\nTherefore, the total revenue from all orders is $1097.",

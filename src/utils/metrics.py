@@ -222,15 +222,26 @@ def extract_answer_from_response(response: str,
 
     # Default: try to extract content after common prefixes
     common_prefixes = [
-        r"the answer is[:\s]+(.+?)(?:\.|$)",
-        r"(?:password|revenue|value|result)[:\s]+(.+?)(?:\.|$)",
-        r"^(.+?)(?:\.|$)",  # First sentence
+        # Extract quoted values: "value"
+        r'["\']([^"\']+)["\']',
+        # Extract after "is" or ":" - alphanumeric/special chars only
+        r"(?:is|:|are)\s+([A-Za-z0-9$_\-]+(?:\s+[A-Za-z0-9$_\-]+)?)",
+        # Extract standalone alphanumeric value
+        r"([A-Za-z0-9]{8,})",  # At least 8 chars for password-like strings
+        # Extract currency amounts
+        r"(\$\d+(?:\.\d+)?\s*(?:million|billion)?)",
+        # First sentence fallback
+        r"^(.+?)(?:\.|$)",
     ]
 
     for prefix_pattern in common_prefixes:
-        match = re.search(prefix_pattern, response, re.IGNORECASE | re.DOTALL)
+        match = re.search(prefix_pattern, response, re.IGNORECASE)
         if match:
-            return match.group(1).strip()
+            extracted = match.group(1).strip()
+            # Clean up common prefix words if they got captured
+            extracted = re.sub(r'^(mentioned in the document|the password|the secret|the answer)\s+', '', extracted, flags=re.IGNORECASE)
+            if extracted:  # Only return if non-empty
+                return extracted
 
     # Fallback: return trimmed response
     return response.strip()

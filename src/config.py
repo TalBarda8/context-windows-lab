@@ -53,12 +53,12 @@ MAX_CONTEXT_WINDOW = 4096  # llama2 standard limit
 # ============================================================================
 
 EXP1_CONFIG = {
-    "num_documents": 5,  # Number of documents to generate
-    "words_per_document": 200,  # Words in each document
+    "num_haystack_docs": 40,  # Number of distractor documents in context
+    "words_per_document": 150,  # Words in each haystack document
     "positions": ["start", "middle", "end"],  # Fact positions to test
-    "iterations_per_position": 10,  # Number of iterations per position
-    "critical_fact_template": "The secret password is {password}.",
-    "query_template": "What is the secret password mentioned in the documents?",
+    "iterations_per_position": 5,  # Number of iterations per position (reduced for speed)
+    "critical_fact_template": "The secure authentication token required for system access is {password}.",
+    "query_template": "What is the secure authentication token required for system access?",
 }
 
 # ============================================================================

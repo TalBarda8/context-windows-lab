@@ -166,31 +166,66 @@ class DataGenerator:
         }
 
     def generate_needle_haystack_dataset(self,
-                                         num_docs: int = 5,
-                                         words_per_doc: int = 200,
+                                         num_docs: int = 10,
+                                         words_per_doc: int = 150,
+                                         num_haystack_docs: int = 20,
                                          save_path: Optional[Path] = None
                                          ) -> List[Dict[str, str]]:
         """
-        Generate complete dataset for Experiment 1.
+        Generate complete dataset for Experiment 1 with multi-document contexts.
 
         Args:
-            num_docs: Number of documents per position
-            words_per_doc: Words per document
+            num_docs: Number of test cases per position
+            words_per_doc: Words per haystack document
+            num_haystack_docs: Number of distractor documents in context
             save_path: Path to save dataset (JSON)
 
         Returns:
-            List of generated documents
+            List of generated test cases (each with multi-doc context)
         """
         positions = EXP1_CONFIG["positions"]
         dataset = []
 
         for position in positions:
             for i in range(num_docs):
-                doc_data = self.generate_needle_haystack_document(
-                    words=words_per_doc,
-                    position=position
+                # Generate secret value
+                secret_value = ''.join(self.random.choices(
+                    string.ascii_letters + string.digits, k=12
+                ))
+                fact = EXP1_CONFIG["critical_fact_template"].format(password=secret_value)
+
+                # Generate haystack documents (distractors)
+                haystack_docs = []
+                for _ in range(num_haystack_docs):
+                    filler = self.generate_filler_text(words_per_doc)
+                    haystack_docs.append(filler)
+
+                # Determine where to inject the needle
+                if position == 'start':
+                    needle_idx = 0
+                elif position == 'middle':
+                    needle_idx = len(haystack_docs) // 2
+                else:  # end
+                    needle_idx = len(haystack_docs) - 1
+
+                # Inject the needle into one document
+                haystack_docs[needle_idx] = self.embed_fact_in_text(
+                    haystack_docs[needle_idx],
+                    fact,
+                    'middle'  # Embed in middle of that specific document
                 )
-                doc_data["doc_id"] = f"{position}_{i}"
+
+                # Concatenate all documents with clear separators
+                full_context = '\n\n---\n\n'.join(haystack_docs)
+
+                doc_data = {
+                    "document": full_context,
+                    "fact": fact,
+                    "position": position,
+                    "secret_value": secret_value,
+                    "doc_id": f"{position}_{i}",
+                    "num_haystack_docs": num_haystack_docs,
+                }
                 dataset.append(doc_data)
 
         if save_path:
@@ -228,9 +263,9 @@ class DataGenerator:
         # Generate business-themed filler
         filler = self.generate_filler_text(words - 20)
 
-        # Embed fact in random position
+        # Embed fact in middle position for consistency
         document = self.embed_fact_in_text(
-            filler, fact, self.random.choice(['start', 'middle', 'end'])
+            filler, fact, 'middle'
         )
 
         return {
@@ -265,8 +300,8 @@ class DataGenerator:
             # Use same revenue value across all documents in this set
             revenue_value = f"${self.random.randint(100, 999)} million"
 
-            # Select one random document to embed the fact
-            target_doc_index = self.random.randint(0, count - 1)
+            # Place fact in middle document for consistency (tests "lost in middle")
+            target_doc_index = count // 2
 
             docs = []
             for i in range(count):
