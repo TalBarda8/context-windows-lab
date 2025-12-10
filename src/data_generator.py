@@ -454,8 +454,9 @@ def main():
 
     print("Generating Experiment 1 data (Needle in Haystack)...")
     exp1_data = generator.generate_needle_haystack_dataset(
-        num_docs=EXP1_CONFIG["num_documents"],
+        num_docs=EXP1_CONFIG["iterations_per_position"],
         words_per_doc=EXP1_CONFIG["words_per_document"],
+        num_haystack_docs=EXP1_CONFIG["num_haystack_docs"],
         save_path=NEEDLE_HAYSTACK_DIR / "dataset.json"
     )
     print(f"Generated {len(exp1_data)} documents for Experiment 1\n")

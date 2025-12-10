@@ -53,9 +53,9 @@ MAX_CONTEXT_WINDOW = 4096  # llama2 standard limit
 # ============================================================================
 
 EXP1_CONFIG = {
-    "num_haystack_docs": 15,  # Optimal for U-shape demonstration with llama2
-    "words_per_document": 100,  # Shorter documents enable both primacy and recency
-    "num_red_herrings": 2,  # Minimal distractors create middle degradation without overwhelming end
+    "num_haystack_docs": 13,  # Sweet spot: long enough for middle degradation, short enough for recency
+    "words_per_document": 105,  # Moderate length
+    "num_red_herrings": 4,  # Balanced interference
     "positions": ["start", "middle", "end"],  # Fact positions to test
     "iterations_per_position": 10,  # Number of iterations per position for statistical reliability
     # Clear, memorable needle phrasing
