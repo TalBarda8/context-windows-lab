@@ -200,6 +200,34 @@ class DataGenerator:
                     filler = self.generate_filler_text(words_per_doc)
                     haystack_docs.append(filler)
 
+                # Inject red herrings (fake credentials) throughout haystack
+                num_red_herrings = EXP1_CONFIG.get("num_red_herrings", 0)
+                red_herring_templates = EXP1_CONFIG.get("red_herring_templates", [])
+
+                if num_red_herrings > 0 and red_herring_templates:
+                    # Select random documents to inject red herrings (avoiding needle position)
+                    available_indices = list(range(num_haystack_docs))
+                    for _ in range(min(num_red_herrings, len(available_indices))):
+                        if available_indices:
+                            rh_idx = self.random.choice(available_indices)
+                            available_indices.remove(rh_idx)
+
+                            # Generate fake token
+                            fake_token = ''.join(self.random.choices(
+                                string.ascii_letters + string.digits, k=12
+                            ))
+
+                            # Select random red herring template
+                            rh_template = self.random.choice(red_herring_templates)
+                            red_herring = rh_template.format(fake_token=fake_token)
+
+                            # Inject red herring into document
+                            haystack_docs[rh_idx] = self.embed_fact_in_text(
+                                haystack_docs[rh_idx],
+                                red_herring,
+                                self.random.choice(['start', 'middle', 'end'])
+                            )
+
                 # Determine where to inject the needle
                 if position == 'start':
                     needle_idx = 0
@@ -215,8 +243,8 @@ class DataGenerator:
                     'middle'  # Embed in middle of that specific document
                 )
 
-                # Concatenate all documents with clear separators
-                full_context = '\n\n---\n\n'.join(haystack_docs)
+                # Concatenate all documents with subtle separators (no ---)
+                full_context = '\n\n'.join(haystack_docs)
 
                 doc_data = {
                     "document": full_context,

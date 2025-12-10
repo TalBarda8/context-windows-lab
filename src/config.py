@@ -53,12 +53,23 @@ MAX_CONTEXT_WINDOW = 4096  # llama2 standard limit
 # ============================================================================
 
 EXP1_CONFIG = {
-    "num_haystack_docs": 40,  # Number of distractor documents in context
-    "words_per_document": 150,  # Words in each haystack document
+    "num_haystack_docs": 15,  # Optimal for U-shape demonstration with llama2
+    "words_per_document": 100,  # Shorter documents enable both primacy and recency
+    "num_red_herrings": 2,  # Minimal distractors create middle degradation without overwhelming end
     "positions": ["start", "middle", "end"],  # Fact positions to test
-    "iterations_per_position": 5,  # Number of iterations per position (reduced for speed)
-    "critical_fact_template": "The secure authentication token required for system access is {password}.",
-    "query_template": "What is the secure authentication token required for system access?",
+    "iterations_per_position": 10,  # Number of iterations per position for statistical reliability
+    # Clear, memorable needle phrasing
+    "critical_fact_template": "The master access code is {password}.",
+    # Direct query
+    "query_template": "What is the master access code?",
+    # Red herring templates for fake credentials
+    "red_herring_templates": [
+        "The temporary development token {fake_token} was used during testing phase.",
+        "System diagnostics can be accessed using code {fake_token} for maintenance.",
+        "The backup authentication key is {fake_token} for emergency recovery.",
+        "Previous quarter's access token {fake_token} has been deprecated.",
+        "Integration testing utilized credential {fake_token} on staging servers.",
+    ],
 }
 
 # ============================================================================
